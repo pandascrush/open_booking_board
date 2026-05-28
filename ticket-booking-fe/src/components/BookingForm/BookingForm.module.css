@@ -1,0 +1,186 @@
+/* ── Slide-in animation ────────────────────────────────────────── */
+.container {
+  animation: slideDown 0.32s cubic-bezier(0.4,0,0.2,1) both;
+  margin-top: 24px;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+/* ── Card ──────────────────────────────────────────────────────── */
+.card {
+  background: rgba(11, 60, 112, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 161, 221, 0.22);
+  border-radius: 16px;
+  padding: clamp(20px, 4vw, 32px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 0 32px rgba(0,161,221,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top-edge glow */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00a1dd, transparent);
+  border-radius: 16px 16px 0 0;
+}
+
+/* ── Title ─────────────────────────────────────────────────────── */
+.title {
+  font-weight: 700;
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: #fff;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.seatBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #00a1dd, #0077b6);
+  color: #fff;
+  border-radius: 8px;
+  padding: 2px 12px;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0,161,221,0.4);
+}
+
+/* ── Form ──────────────────────────────────────────────────────── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Two-column name layout on tablet+ */
+.nameRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(203, 213, 225, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.input {
+  background: rgba(0, 15, 40, 0.6);
+  border: 1.5px solid rgba(0,161,221,0.2);
+  color: #fff;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  width: 100%;
+}
+
+.input:focus {
+  border-color: #00a1dd;
+  box-shadow: 0 0 0 3px rgba(0,161,221,0.15);
+}
+
+.input::placeholder { color: rgba(148,163,184,0.5); }
+
+.inputError {
+  border-color: rgba(239,68,68,0.6) !important;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.12) !important;
+}
+
+.error {
+  color: #fca5a5;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Actions ───────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.submitBtn {
+  flex: 1;
+  min-width: 160px;
+  background: linear-gradient(135deg, #00a1dd 0%, #0077b6 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 13px 28px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,161,221,0.35);
+  transition: all 0.2s ease;
+}
+
+.submitBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(0,161,221,0.5);
+  filter: brightness(1.08);
+}
+
+.submitBtn:active { transform: translateY(0); }
+
+.cancelBtn {
+  background: transparent;
+  color: rgba(203,213,225,0.7);
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 13px 24px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.cancelBtn:hover {
+  border-color: rgba(255,255,255,0.35);
+  color: #fff;
+  background: rgba(255,255,255,0.05);
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .nameRow {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .submitBtn, .cancelBtn {
+    width: 100%;
+  }
+}
